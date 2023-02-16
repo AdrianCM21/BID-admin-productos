@@ -1,10 +1,10 @@
 import React from 'react'
-import Formulario from '../components/Formulario'
+import Productos from './productos/Productos'
 
 const Home = () => {
   return (
     <>
-        <Formulario/>
+        <Productos/>
     </>
   )
 }

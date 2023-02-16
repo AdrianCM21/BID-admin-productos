@@ -14,9 +14,6 @@ const Menu = () => {
                         <li className="nav-item">
                             <NavLink className="nav-link" aria-current="page" to="/">Inicio</NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" aria-current="page" to="/personas">Personas</NavLink>
-                        </li>
                     </ul>
                 </div>
             </div>
