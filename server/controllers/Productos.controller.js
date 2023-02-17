@@ -29,6 +29,27 @@ module.exports.mostrarUnProducto = async (request, response) => {
         const producto = await Producto.findOne({_id:request.params.id})
         response.json(producto );
     } catch (error) {
+        response.status(400);
+        response.json(error);
+    }
+}
+
+module.exports.actualizarProducto = async (request,response)=>{
+    try {
+        const producto = await Producto.findOneAndUpdate({_id: request.params.id}, request.body, {new:true})
+        response.json(producto);
+    } catch (error) {
+        response.status(400);
+        response.json(error);
+    }
+}
+
+module.exports.EliminarProducto = async (request,response)=>{
+    try {
+        const producto = await Producto.deleteOne({_id: request.params.id})
+        response.json(producto);
+    } catch (error) {
+        response.status(400);
         response.json(error);
     }
 }

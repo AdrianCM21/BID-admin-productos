@@ -1,30 +1,8 @@
 import React from 'react'
 import {Formik,Form,Field} from 'formik'
 import * as Yup from 'yup';
-import axios from 'axios';
-import Swal from 'sweetalert2'
 
-const Formulario = () => {
-    const valorInicial={
-        titulo:'',
-        precio:0,
-        description:''
-    }
-    const envio= async (values,actions)=>{
-        try {
-            console.log(process.env.REACT_APP_API_URL);
-            const producto = await axios.post(`${process.env.REACT_APP_API_URL}/api/producto`,values)
-            Swal.fire({
-            title: 'Exito',
-            html: 'Se agrego correctamentes',
-            icon: 'success'
-            })
-            actions.resetForm(valorInicial);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
+const Formulario = ({valorInicial, envio}) => {
 
     const productoError=Yup.object().shape({
         titulo: Yup.string()
@@ -36,7 +14,7 @@ const Formulario = () => {
             .positive('No puede ser negativo'),
             
         description: Yup.string()
-            .required('El apellido es requerido.')
+            .required('requerido.')
             .min(5, 'Se necesita como minumo 5 caracteres.')
     });
 
@@ -49,8 +27,8 @@ const Formulario = () => {
         onSubmit={envio}
         >
         {({ errors, touched, isValid, dirty })=>(
-             <Form>
-             <Field name="titulo" className="form-control" placeholder="Titulo" />
+             <Form className=' col-sm-4 mb-3 mb-sm-0'>
+             <Field name="titulo" className="form-control " placeholder="Titulo" />
              {touched.titulo && errors.titulo && <div className="ms-3 mt-1 text-danger">{errors.titulo}</div>}
              <Field name="precio" type="number" className="form-control mt-2" placeholder="Precio"/>
              {touched.precio && errors.precio && <div className="ms-3 mt-1 text-danger">{errors.apellido}</div>}
